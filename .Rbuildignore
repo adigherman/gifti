@@ -9,3 +9,4 @@ check_reader.R
 ^docs$
 ^DESCRIPTION\.bak$
 ^\./\.travis\.yml\.bak$
+^\./appveyor\.yml\.bak$
