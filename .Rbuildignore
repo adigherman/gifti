@@ -7,3 +7,5 @@ check_reader.R
 ^cran-comments\.md$
 ^\.github$
 ^docs$
+^DESCRIPTION\.bak$
+^\./\.travis\.yml\.bak$
