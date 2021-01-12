@@ -1,4 +1,4 @@
-# gifti
+#  gifti
 
 Reads in Neuroimaging 'GIFTI' Files with Geometry Information
     
