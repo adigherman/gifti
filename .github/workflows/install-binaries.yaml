@@ -42,6 +42,12 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@master
 
+      - name: Install ITKR
+        uses: jaxxstorm/action-install-gh-release@release/v1-alpha
+        with: # Grab a specific tag
+          repo: neuroconductor-devel/ITKR
+          tag: 0.5.1.2.s
+
       - name: Get repo name
         uses: adigherman/actions/get-repo-name@v1
         id: get-name
