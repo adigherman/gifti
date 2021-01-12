@@ -19,3 +19,6 @@ RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 biocViews:
 Repository: Neuroconductor-Devel
+Remotes: 
+    neuroconductor/neurobase@b5fcc694621d55cdd95f60f140f2f7757db72a1e,
+    neuroconductor/fslr@0ee0e100af9858a3bdfb4456b3bd2ddb6ea68ebc

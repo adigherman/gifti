@@ -4,4 +4,6 @@ do_package_checks(args=c("--as-cran","--install-args=--build"))
 get_stage("before_install") %>%
   add_code_step(message("Listing folder and files")) %>%
   add_code_step(message(getwd())) %>%
-  add_code_step(message(list.files()))
+  add_code_step(message(list.files())) %>%
+  add_code_step(message("Installing ITKR binaries")) %>%
+  add_code_step(ghtravis::install_remote_binaries(check_r_version = TRUE, force_sha = FALSE, remotes = c("neuroconductor/ITKR")))
