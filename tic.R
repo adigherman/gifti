@@ -2,7 +2,7 @@
 do_package_checks(args=c("--as-cran","--install-args=--build"))
 
 # get remotes and try to install binaries
-remotes = get_remotes()
+remotes = ghtravis::get_remotes()
 
 if(!is.null(remotes)) {
   for(remote in remotes) {
