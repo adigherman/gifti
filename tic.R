@@ -6,7 +6,7 @@ remotes = ghtravis::get_remotes()
 
 if(!is.null(remotes)) {
   for(remote in remotes) {
-    remote_info <- parse_remotes(remote)
+    remote_info <- ghtravis::parse_remotes(remote)
     github_user <- sapply(remote_info, `[[`, "username")
     repo <- sapply(remote_info, `[[`, "repo")
     slug <- paste0(paste0(github_user,"/",repo))
