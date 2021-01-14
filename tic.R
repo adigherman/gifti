@@ -27,8 +27,8 @@ if(!is.null(remotes)) {
     slug <- paste0(paste0(github_user,"/",repo))
 
 #    if(!is.null(github_user) && !is.null(repo)) {
-#      get_stage("before_install") %>%
-#        add_code_step(HelloWorlds$new())
+      get_stage("before_install") %>%
+        step_hello_world()
 #        add_code_step(message(paste0("Installing ","repo"," binaries"))) %>%
 #        add_code_step(ghtravis::install_remote_binaries(check_r_version = TRUE, force_sha = FALSE, remotes = c("slug")))
 #    }
