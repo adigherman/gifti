@@ -13,8 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-#          - {os: macOS-latest,   r: 'release', r_ver: '4.0', latex: "true"}
-#          - {os: windows-latest, r: 'release', r_ver: '4.0'}
+          - {os: macOS-latest,   r: 'release', r_ver: '4.0', latex: "true"}
+          - {os: windows-latest, r: 'release', r_ver: '4.0'}
           - {os: ubuntu-16.04,   r: 'release', r_ver: '4.0', latex: "true", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
 
     env:
@@ -30,17 +30,17 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
-#      - uses: r-lib/actions/setup-tinytex@master
-#        if: matrix.config.latex == 'true'
+      - uses: r-lib/actions/setup-tinytex@master
+        if: matrix.config.latex == 'true'
 
-#      - name: Install additional latex modules
-#        if: matrix.config.latex == 'true'
-#        run: |
-#          tlmgr update --self
-#          tlmgr install filecontents upquote courier courier-scaled biber biblatex collection-luatex
-#          tlmgr update --all
+      - name: Install additional latex modules
+        if: matrix.config.latex == 'true'
+        run: |
+          tlmgr update --self
+          tlmgr install filecontents upquote courier courier-scaled biber biblatex collection-luatex
+          tlmgr update --all
 
-#      - uses: r-lib/actions/setup-pandoc@master
+      - uses: r-lib/actions/setup-pandoc@master
 
       - name: Get repo name
         uses: adigherman/actions/get-repo-name@v1
