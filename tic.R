@@ -16,7 +16,7 @@ HelloWorlds <- R6Class(
 )
 
 step_hello_world <- function() {
-  HelloWorld$new()
+  HelloWorlds$new()
 }
 
 if(!is.null(remotes)) {
