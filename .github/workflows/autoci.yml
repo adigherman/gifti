@@ -2,10 +2,29 @@ on:
   push:
     tags:
        - '*.[sc]'
+  workflow_dispatch:
 
 name: Neuroconductor-check
 
 jobs:
+  pkgdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@master
+      - uses: r-lib/actions/setup-pandoc@master
+      - name: Install dependencies
+        run: |
+          install.packages("remotes")
+          remotes::install_deps(dependencies = TRUE)
+          remotes::install_dev("pkgdown")
+        shell: Rscript {0}
+      - name: Install package
+        run: R CMD INSTALL .
+      - name: Deploy package
+        run: pkgdown::deploy_to_branch(new_process = FALSE)
+        shell: Rscript {0}
+
   create_release:
     name: Create release
     runs-on: ubuntu-latest
@@ -35,17 +54,14 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macOS-latest,   r: '3.4',     r_ver: '3.4', latex: "true"}
           - {os: macOS-latest,   r: '3.5',     r_ver: '3.5', latex: "true"}
           - {os: macOS-latest,   r: 'oldrel',  r_ver: '3.6', latex: "true"}
           - {os: macOS-latest,   r: 'release', r_ver: '4.0', latex: "true"}
           - {os: macOS-latest,   r: 'devel',   r_ver: '4.1', latex: "true"}
-          - {os: windows-latest, r: '3.4',     r_ver: '3.4',}
           - {os: windows-latest, r: '3.5',     r_ver: '3.5'}
           - {os: windows-latest, r: 'oldrel',  r_ver: '3.6'}
           - {os: windows-latest, r: 'release', r_ver: '4.0'}
           - {os: windows-latest, r: 'devel',   r_ver: '4.1'}
-          - {os: ubuntu-16.04,   r: '3.4',     r_ver: '3.4', latex: "true", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
           - {os: ubuntu-16.04,   r: '3.5',     r_ver: '3.5', latex: "true", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
           - {os: ubuntu-16.04,   r: 'oldrel',  r_ver: '3.6', latex: "true", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
           - {os: ubuntu-16.04,   r: 'release', r_ver: '4.0', latex: "true", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
@@ -125,6 +141,7 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           remotes::install_github("ropensci/tic")
+          remotes::install_github("muschellij2/ghtravis")
         shell: Rscript {0}
 
       - name: Session info
