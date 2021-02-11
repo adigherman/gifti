@@ -1,8 +1,7 @@
 on:
   push:
-    tags:
-       - '*.[sc]'
-  workflow_dispatch:
+    branches:
+      - master
 
 name: Neuroconductor-check
 
