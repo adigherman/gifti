@@ -15,6 +15,8 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@master
       - name: Install system dependencies
         run: |
+          git config user.name adigherman
+          git config user.email adig@jhu.edu
           sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
       - name: Install R dependencies
         run: |
