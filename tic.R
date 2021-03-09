@@ -1,6 +1,12 @@
 # installs dependencies, runs R CMD check, runs covr::codecov()
 do_package_checks(args=c("--as-cran","--install-args=--build"))
 
+# if windows then prevent errors from warnings (most likely from not building vignettes)
+if(.Platform$OS.type == "windows")
+{
+  do_package_checks(args=c("--as-cran","--install-args=--build", error_on="error"))
+}
+
 InstallRemoteBinaries <- R6Class(
   "InstallRemoteBinaries",
   inherit = TicStep,
